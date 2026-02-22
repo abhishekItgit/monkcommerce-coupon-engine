@@ -147,6 +147,55 @@ The engine coordinates execution but does not contain coupon-specific logic.
 * Applies free item logic.
 * Enforces repetition limits to prevent over-discounting.
 
+
+
+##  Unimplemented Cases (Considered During Design)
+
+The following scenarios were intentionally analyzed during development but were not fully implemented due to time constraints and scope limitations. The architecture has been designed to support these extensions with minimal changes in the future.
+
+###  Coupon Stacking & Priority Engine
+
+* Applying multiple coupons on a single cart with defined priority rules.
+* Conflict resolution when multiple coupons are applicable.
+* Requires an additional orchestration layer and ranking algorithm.
+
+###  Category-Based Coupons
+
+* Discounts based on product categories instead of individual product IDs.
+* Would require integration with a product catalog or category service.
+
+###  Payment Method Based Coupons
+
+* Coupons applicable only when a specific payment method is selected.
+* Needs dependency on checkout/payment context which is currently out of scope.
+
+###  User-Specific Coupons
+
+* First-time user discounts or user-segment targeting.
+* Would require authentication context and user profile data.
+
+###  Maximum Discount Caps
+
+* Limiting total discount amount even when percentage rules allow higher values.
+* Needs additional validation logic and metadata constraints.
+
+###  Dynamic Cheapest-Item-Free Logic (Advanced BXGY)
+
+* Automatically selecting the lowest-priced eligible item as the free product.
+* Requires sorting and more complex cart evaluation rules.
+
+### Multi-Currency Support
+
+* Handling currency conversion and region-specific pricing.
+* Would require currency service integration and standardized rounding strategy.
+
+###  High-Scale Performance Enhancements
+
+* Redis caching for coupon eligibility checks.
+* Distributed locking or idempotency for concurrent coupon application.
+* Event-driven tracking using message queues (e.g., Kafka).
+
+
 ---
 
 #  Request Lifecycle
