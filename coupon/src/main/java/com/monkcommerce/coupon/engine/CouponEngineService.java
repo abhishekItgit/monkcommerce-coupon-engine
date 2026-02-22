@@ -35,6 +35,10 @@ public class CouponEngineService {
 
             if (coupon.getActive() == null || !coupon.getActive()) continue;
 
+            if (coupon.getExpirationDate() != null &&
+                    coupon.getExpirationDate().isBefore(java.time.LocalDateTime.now()))
+                continue;
+
             CouponStrategy strategy =
                     strategyFactory.getStrategy(coupon.getType());
 
