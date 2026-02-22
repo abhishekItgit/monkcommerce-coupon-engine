@@ -1,5 +1,6 @@
 package com.monkcommerce.coupon.factory;
 
+import com.monkcommerce.coupon.model.CouponType;
 import com.monkcommerce.coupon.strategy.CouponStrategy;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ public class CouponStrategyFactory {
         this.strategyMap = strategyMap;
     }
 
-    public CouponStrategy getStrategy(String type) {
-        return strategyMap.get(type);
+    public CouponStrategy getStrategy(CouponType type) {
+        return strategyMap.get(type.name());
     }
 }

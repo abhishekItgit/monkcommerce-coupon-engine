@@ -14,7 +14,8 @@ public class Coupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long couponId;
 
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private CouponType type;
 
 
     @Column(columnDefinition = "TEXT")
